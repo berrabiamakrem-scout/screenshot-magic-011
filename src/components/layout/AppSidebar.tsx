@@ -77,7 +77,7 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 
 export function AppSidebar() {
   return (
-    <aside className="hidden w-64 shrink-0 border-s border-border bg-sidebar lg:block">
+    <aside className="hidden w-64 shrink-0 border-e border-border bg-sidebar lg:block">
       <div className="sticky top-0 h-screen overflow-y-auto">
         <SidebarContent />
       </div>

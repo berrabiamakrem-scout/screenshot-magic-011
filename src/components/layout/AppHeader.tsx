@@ -93,7 +93,7 @@ export function AppHeader() {
             className="absolute inset-0 bg-navy/40"
             onClick={() => setMobileNavOpen(false)}
           />
-          <div className="absolute inset-y-0 end-0 w-72 max-w-[85vw] overflow-y-auto bg-sidebar shadow-raised">
+          <div className="absolute inset-y-0 start-0 w-72 max-w-[85vw] overflow-y-auto bg-sidebar shadow-raised">
             <div className="flex justify-start p-3">
               <button
                 type="button"
