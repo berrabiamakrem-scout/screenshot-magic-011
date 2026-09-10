@@ -1,29 +1,17 @@
-import {
-  TrendingUp,
-  Tent,
-  Landmark,
-  Coins,
-  Megaphone,
-  Handshake,
-  Users,
-  Leaf,
-  type LucideIcon,
-} from "lucide-react";
-
 import { SectionHeader } from "@/components/layout/AppShell";
-import { strategicPriorities, type StrategicPriority } from "@/data/impact37";
+import { strategicPriorities } from "@/data/impact37";
 import { toneClasses } from "@/lib/tone";
 
-const icons: Record<StrategicPriority["icon"], LucideIcon> = {
-  training: TrendingUp,
-  programme: Tent,
-  governance: Landmark,
-  resources: Coins,
-  media: Megaphone,
-  partnerships: Handshake,
-  youth: Users,
-  sustainability: Leaf,
-};
+import pri1 from "@/assets/pri-1.png.asset.json";
+import pri2 from "@/assets/pri-2.png.asset.json";
+import pri3 from "@/assets/pri-3.png.asset.json";
+import pri4 from "@/assets/pri-4.png.asset.json";
+import pri5 from "@/assets/pri-5.png.asset.json";
+import pri6 from "@/assets/pri-6.png.asset.json";
+import pri7 from "@/assets/pri-7.png.asset.json";
+import pri8 from "@/assets/pri-8.png.asset.json";
+
+const priorityIcons = [pri1, pri2, pri3, pri4, pri5, pri6, pri7, pri8];
 
 export function StrategicPriorities() {
   return (
@@ -32,29 +20,27 @@ export function StrategicPriorities() {
         title="الأولويات الاستراتيجية الثمانية"
         action={{ label: "عرض جميع الأولويات" }}
       />
-      <div className="grid gap-4 grid-cols-2 lg:grid-cols-4 xl:grid-cols-8">
-        {strategicPriorities.map((priority) => {
-          const Icon = icons[priority.icon];
+      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 xl:grid-cols-8">
+        {strategicPriorities.map((priority, index) => {
           const tone = toneClasses[priority.tone];
+          const icon = priorityIcons[index]!;
           return (
             <article
               key={priority.number}
-              className="card-surface flex flex-col items-center gap-2 p-4 text-center"
+              className="card-surface flex flex-col items-center gap-1.5 p-3 text-center"
             >
               <span
-                className={`self-start rounded-lg px-2 py-0.5 font-display text-[0.7rem] font-bold ${tone.badge}`}
+                className={`self-end rounded-lg px-2 py-0.5 font-display text-[0.7rem] font-bold ${tone.badge}`}
               >
                 {priority.number}
               </span>
-              <span className={`rounded-xl p-2.5 ${tone.soft}`}>
-                <Icon className={`size-6 ${tone.text}`} aria-hidden />
-              </span>
-              <h3 className="text-sm font-semibold leading-6 text-navy">
-                أولوية {priority.title}
-              </h3>
-              <p className="mt-auto text-[0.7rem] leading-5 text-muted-foreground">
-                {priority.path}
-              </p>
+              <img
+                src={icon.url}
+                alt=""
+                aria-hidden
+                className="h-12 w-auto object-contain mix-blend-multiply"
+              />
+              <h3 className="text-[0.8rem] font-semibold leading-5 text-navy">{priority.title}</h3>
             </article>
           );
         })}
