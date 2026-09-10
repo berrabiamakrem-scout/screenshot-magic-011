@@ -13,29 +13,31 @@ export function StrategicPaths() {
   return (
     <section>
       <SectionHeader title="المسارات الاستراتيجية لأثر 37" action={{ label: "عرض جميع المسارات" }} />
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="grid gap-2.5 sm:grid-cols-2 xl:grid-cols-4">
         {strategicPaths.map((path, index) => {
           const tone = toneClasses[path.tone];
           const icon = pathIcons[index]!;
           return (
-            <article key={path.number} className="card-surface flex flex-col gap-2 p-4">
+            <article key={path.number} className="card-surface flex flex-col gap-1.5 p-3">
               <div className="flex items-center justify-between gap-2">
-                <h3 className={`font-display text-sm font-bold ${tone.text}`}>{path.title}</h3>
+                <h3 className={`font-display text-[0.82rem] font-bold ${tone.text}`}>
+                  {path.title}
+                </h3>
                 <span
-                  className={`shrink-0 rounded-lg px-2 py-1 font-display text-xs font-bold ${tone.badge}`}
+                  className={`shrink-0 rounded-md px-1.5 py-0.5 font-display text-[0.65rem] font-bold ${tone.badge}`}
                 >
                   {path.number}
                 </span>
               </div>
-              <div className="flex items-center gap-3">
-                <p className="line-clamp-5 flex-1 text-[0.78rem] leading-6 text-muted-foreground">
+              <div className="flex items-center gap-2">
+                <p className="line-clamp-3 flex-1 text-[0.7rem] leading-5 text-muted-foreground">
                   {path.description}
                 </p>
                 <img
                   src={icon.url}
                   alt=""
                   aria-hidden
-                  className="h-20 w-24 shrink-0 object-contain mix-blend-multiply"
+                  className="h-12 w-14 shrink-0 object-contain mix-blend-multiply"
                 />
               </div>
             </article>

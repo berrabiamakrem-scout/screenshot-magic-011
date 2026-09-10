@@ -11,9 +11,9 @@ const actions: { label: string; icon: LucideIcon; tone: Tone }[] = [
 
 export function QuickActions() {
   return (
-    <section className="card-surface p-6">
+    <section className="card-surface p-4">
       <h2 className="section-title">إجراءات سريعة</h2>
-      <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
+      <div className="mt-3 grid grid-cols-2 gap-2">
         {actions.map((action) => {
           const Icon = action.icon;
           const tone = toneClasses[action.tone];
@@ -21,7 +21,7 @@ export function QuickActions() {
             <button
               key={action.label}
               type="button"
-              className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2.5 text-start text-[0.78rem] font-semibold text-navy transition-colors hover:border-teal hover:bg-secondary"
+              className="flex items-center gap-2 rounded-xl border border-border bg-surface px-2.5 py-2 text-start text-[0.72rem] font-semibold text-navy transition-colors hover:border-teal hover:bg-secondary"
             >
               <span className={`shrink-0 rounded-lg p-1.5 ${tone.soft}`}>
                 <Icon className={`size-4 ${tone.text}`} aria-hidden />

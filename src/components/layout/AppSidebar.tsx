@@ -33,20 +33,20 @@ export const navItems: NavItem[] = [
 
 export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <div className="flex h-full flex-col gap-6 bg-sidebar">
-      <div className="px-5 pt-6">
+    <div className="flex h-full flex-col gap-3 bg-sidebar">
+      <div className="px-5 pt-4">
         <img
           src={impactLogo.url}
           alt="شعار أثر 37 – IMPACT 37"
-          className="mx-auto h-24 w-auto object-contain"
+          className="mx-auto h-16 w-auto object-contain"
         />
       </div>
 
-      <nav className="flex-1 space-y-1 px-3" aria-label="القائمة الرئيسية">
+      <nav className="flex-1 space-y-0.5 px-3" aria-label="القائمة الرئيسية">
         {navItems.map((item, index) => {
           const Icon = item.icon;
           const isActive = index === 0;
-          const className = `flex items-center gap-3 rounded-lg px-3 py-2.5 text-[0.95rem] font-medium transition-colors ${
+          const className = `flex items-center gap-2.5 rounded-lg px-3 py-1.5 text-[0.85rem] font-medium transition-colors ${
             isActive
               ? "bg-navy text-primary-foreground shadow-card"
               : "text-navy/80 hover:bg-sidebar-accent hover:text-navy"
@@ -66,10 +66,10 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         })}
       </nav>
 
-      <div className="border-t border-border px-5 py-5">
-        <p className="text-sm text-muted-foreground">معاً...</p>
-        <p className="font-display text-lg font-bold text-navy">نصنع أثراً يدوم</p>
-        <p className="mt-1 text-xs text-teal">{identity.tagline}</p>
+      <div className="border-t border-border px-5 py-3">
+        <p className="text-[0.75rem] text-muted-foreground">معاً...</p>
+        <p className="font-display text-base font-bold text-navy">نصنع أثراً يدوم</p>
+        <p className="mt-0.5 text-[0.7rem] text-teal">{identity.tagline}</p>
       </div>
     </div>
   );

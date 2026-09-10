@@ -9,7 +9,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <AppSidebar />
       <div className="flex min-w-0 flex-1 flex-col">
         <AppHeader />
-        <main className="mx-auto w-full max-w-[1400px] flex-1 space-y-6 px-4 py-6 sm:px-6">
+        <main className="mx-auto w-full max-w-[1500px] flex-1 space-y-4 px-3 py-4 sm:px-5">
           {children}
         </main>
       </div>
@@ -25,7 +25,7 @@ export function SectionHeader({
   action?: { label: string; onClick?: () => void };
 }) {
   return (
-    <div className="mb-3 flex items-center justify-between gap-4">
+    <div className="mb-2 flex items-center justify-between gap-4">
       <h2 className="section-title">{title}</h2>
       {action && (
         <button

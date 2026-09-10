@@ -20,17 +20,17 @@ export function StrategicPriorities() {
         title="الأولويات الاستراتيجية الثمانية"
         action={{ label: "عرض جميع الأولويات" }}
       />
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4 xl:grid-cols-8">
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 lg:grid-cols-8">
         {strategicPriorities.map((priority, index) => {
           const tone = toneClasses[priority.tone];
           const icon = priorityIcons[index]!;
           return (
             <article
               key={priority.number}
-              className="card-surface flex flex-col items-center gap-1.5 p-3 text-center"
+              className="card-surface flex flex-col items-center gap-1 p-2 text-center"
             >
               <span
-                className={`self-end rounded-lg px-2 py-0.5 font-display text-[0.7rem] font-bold ${tone.badge}`}
+                className={`self-end rounded-md px-1.5 py-0.5 font-display text-[0.62rem] font-bold ${tone.badge}`}
               >
                 {priority.number}
               </span>
@@ -38,9 +38,9 @@ export function StrategicPriorities() {
                 src={icon.url}
                 alt=""
                 aria-hidden
-                className="h-12 w-auto object-contain mix-blend-multiply"
+                className="h-9 w-auto object-contain mix-blend-multiply"
               />
-              <h3 className="text-[0.8rem] font-semibold leading-5 text-navy">{priority.title}</h3>
+              <h3 className="text-[0.7rem] font-semibold leading-4 text-navy">{priority.title}</h3>
             </article>
           );
         })}

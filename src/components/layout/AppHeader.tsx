@@ -11,7 +11,7 @@ export function AppHeader() {
   return (
     <>
       <header className="sticky top-0 z-30 border-b border-border bg-surface/95 backdrop-blur">
-        <div className="flex items-center gap-3 px-4 py-3 sm:px-6">
+        <div className="flex items-center gap-3 px-4 py-2 sm:px-5">
           <button
             type="button"
             onClick={() => setMobileNavOpen(true)}
@@ -25,13 +25,15 @@ export function AppHeader() {
             <img
               src={scoutsLogo.url}
               alt="شعار الكشافة التونسية"
-              className="h-11 w-11 shrink-0 object-contain"
+              className="h-9 w-9 shrink-0 object-contain"
             />
             <div className="leading-tight">
-              <p className="font-display text-base font-bold text-navy sm:text-lg">
+              <p className="font-display text-sm font-bold text-navy sm:text-base">
                 {identity.organization}
               </p>
-              <p className="hidden text-xs text-muted-foreground sm:block">{identity.committee}</p>
+              <p className="hidden text-[0.7rem] text-muted-foreground sm:block">
+                {identity.committee}
+              </p>
             </div>
           </div>
 
@@ -45,7 +47,7 @@ export function AppHeader() {
                 type="search"
                 placeholder="البحث في المنظومة..."
                 aria-label="البحث في المنظومة"
-                className="w-56 rounded-lg border border-border bg-background py-2 pe-9 ps-3 text-sm text-navy outline-none transition-colors placeholder:text-muted-foreground focus:border-teal focus:ring-2 focus:ring-teal/20 lg:w-72"
+                className="w-48 rounded-lg border border-border bg-background py-1.5 pe-9 ps-3 text-[0.8rem] text-navy outline-none transition-colors placeholder:text-muted-foreground focus:border-teal focus:ring-2 focus:ring-teal/20 lg:w-64"
               />
             </div>
 
@@ -70,14 +72,14 @@ export function AppHeader() {
 
             <button
               type="button"
-              className="flex items-center gap-2 rounded-lg border border-border px-2 py-1.5 text-start transition-colors hover:bg-secondary"
+              className="flex items-center gap-2 rounded-lg border border-border px-2 py-1 text-start transition-colors hover:bg-secondary"
             >
-              <span className="flex size-9 items-center justify-center rounded-full bg-navy-soft font-display text-sm font-bold text-navy">
+              <span className="flex size-8 items-center justify-center rounded-full bg-navy-soft font-display text-xs font-bold text-navy">
                 م ع
               </span>
               <span className="hidden leading-tight sm:block">
-                <span className="block text-sm font-semibold text-navy">محمد العباري</span>
-                <span className="block text-xs text-muted-foreground">قائد جهة تونس</span>
+                <span className="block text-[0.8rem] font-semibold text-navy">محمد العباري</span>
+                <span className="block text-[0.68rem] text-muted-foreground">قائد جهة تونس</span>
               </span>
               <ChevronDown className="hidden size-4 text-muted-foreground sm:block" aria-hidden />
             </button>
