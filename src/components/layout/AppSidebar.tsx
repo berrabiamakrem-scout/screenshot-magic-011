@@ -35,11 +35,13 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <div className="flex h-full flex-col gap-3 bg-linear-to-b from-sidebar to-sidebar-accent/60 text-sidebar-foreground">
       <div className="px-5 pt-4">
-        <img
-          src={impactLogo.url}
-          alt="شعار أثر 37 – IMPACT 37"
-          className="mx-auto h-16 w-auto object-contain"
-        />
+        <div className="mx-auto w-fit rounded-xl bg-white px-3 py-2 shadow-card">
+          <img
+            src={impactLogo.url}
+            alt="شعار أثر 37 – IMPACT 37"
+            className="mx-auto h-16 w-auto object-contain"
+          />
+        </div>
       </div>
 
       <nav className="flex-1 space-y-0.5 px-3" aria-label="القائمة الرئيسية">
