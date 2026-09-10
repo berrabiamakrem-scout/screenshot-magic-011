@@ -5,7 +5,7 @@ import { contributionChain } from "@/data/impact37";
 
 export function ContributionToImpact37() {
   return (
-    <section className="card-surface relative overflow-hidden p-5">
+    <section className="card-surface relative overflow-hidden p-4">
       <img
         src={heroImage.url}
         alt=""
@@ -18,15 +18,15 @@ export function ContributionToImpact37() {
       />
       <div className="relative">
         <h2 className="section-title">مساهمتك في أثر 37</h2>
-        <p className="mt-1.5 max-w-md text-[0.8rem] leading-6 text-muted-foreground">
+        <p className="mt-1 max-w-md text-[0.72rem] leading-5 text-muted-foreground">
           كل نشاط منك يُساهم في تحقيق الاستراتيجية الوطنية. معاً نصنع تجربة شبابية أكثر تأثيراً.
         </p>
 
-        <ol className="mt-4 flex flex-wrap items-center gap-1.5">
+        <ol className="mt-3 flex flex-wrap items-center gap-1.5">
           {contributionChain.map((step, index) => (
             <li key={step} className="flex items-center gap-1.5">
               <span
-                className={`rounded-lg border px-2.5 py-1.5 text-[0.75rem] font-semibold ${
+                className={`rounded-lg border px-2 py-1 text-[0.68rem] font-semibold ${
                   index === contributionChain.length - 1
                     ? "border-transparent bg-navy text-primary-foreground"
                     : "border-border bg-secondary text-navy"
@@ -43,7 +43,7 @@ export function ContributionToImpact37() {
 
         <button
           type="button"
-          className="mt-4 inline-flex items-center gap-2 rounded-lg border border-teal bg-surface px-4 py-2 text-sm font-semibold text-teal transition-colors hover:bg-teal hover:text-primary-foreground"
+          className="mt-3 inline-flex items-center gap-2 rounded-lg border border-teal bg-surface px-3 py-1.5 text-[0.78rem] font-semibold text-teal transition-colors hover:bg-teal hover:text-primary-foreground"
         >
           اكتشف كيف تساهم
           <ChevronLeft className="size-4" aria-hidden />

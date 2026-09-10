@@ -4,12 +4,12 @@ import { phases } from "@/data/impact37";
 
 export function CurrentPhaseCard() {
   return (
-    <section className="card-surface flex flex-col gap-3 p-5">
+    <section className="card-surface flex flex-col gap-2 p-4">
       <header className="flex items-center justify-between gap-2">
         <h2 className="section-title">المرحلة الحالية {phases.current}</h2>
         <Flag className="size-4 text-violet" aria-hidden />
       </header>
-      <p className="text-[0.78rem] leading-6 text-muted-foreground">
+      <p className="text-[0.72rem] leading-5 text-muted-foreground">
         ترسيخ الأسس وتعزيز التنفيذ عبر المسارات الاستراتيجية لأثر 37 لتحقيق الأثر الملموس في حياة
         الفتية والشباب.
       </p>
