@@ -14,16 +14,198 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      org_unit_closure: {
+        Row: {
+          ancestor_id: string
+          depth: number
+          unit_id: string
+        }
+        Insert: {
+          ancestor_id: string
+          depth: number
+          unit_id: string
+        }
+        Update: {
+          ancestor_id?: string
+          depth?: number
+          unit_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_unit_closure_ancestor_id_fkey"
+            columns: ["ancestor_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "org_unit_closure_unit_id_fkey"
+            columns: ["unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      org_units: {
+        Row: {
+          active: boolean
+          archived_at: string | null
+          code: string | null
+          created_at: string
+          governorate: string | null
+          id: string
+          latitude: number | null
+          level: Database["public"]["Enums"]["org_level"]
+          longitude: number | null
+          name_ar: string
+          name_fr: string | null
+          parent_id: string | null
+          region_code: string | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          archived_at?: string | null
+          code?: string | null
+          created_at?: string
+          governorate?: string | null
+          id?: string
+          latitude?: number | null
+          level: Database["public"]["Enums"]["org_level"]
+          longitude?: number | null
+          name_ar: string
+          name_fr?: string | null
+          parent_id?: string | null
+          region_code?: string | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          archived_at?: string | null
+          code?: string | null
+          created_at?: string
+          governorate?: string | null
+          id?: string
+          latitude?: number | null
+          level?: Database["public"]["Enums"]["org_level"]
+          longitude?: number | null
+          name_ar?: string
+          name_fr?: string | null
+          parent_id?: string | null
+          region_code?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "org_units_parent_id_fkey"
+            columns: ["parent_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          active: boolean
+          created_at: string
+          full_name: string | null
+          id: string
+          org_unit_id: string | null
+          phone: string | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          full_name?: string | null
+          id: string
+          org_unit_id?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          full_name?: string | null
+          id?: string
+          org_unit_id?: string | null
+          phone?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "profiles_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          org_unit_id: string | null
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          org_unit_id?: string | null
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          org_unit_id?: string | null
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_roles_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      can_access_unit: { Args: { _unit_id: string }; Returns: boolean }
+      can_manage_unit: { Args: { _unit_id: string }; Returns: boolean }
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_strategy_admin: { Args: never; Returns: boolean }
+      is_super_admin: { Args: never; Returns: boolean }
+      rebuild_org_unit_closure: { Args: never; Returns: undefined }
     }
     Enums: {
-      [_ in never]: never
+      app_role:
+        | "PLATFORM_SUPER_ADMIN"
+        | "STRATEGY_ADMIN"
+        | "NATIONAL_MANAGER"
+        | "REGIONAL_MANAGER"
+        | "LOCAL_MANAGER"
+        | "ACTIVITY_OWNER"
+        | "REVIEWER"
+        | "EVALUATOR"
+        | "VIEWER"
+      org_level: "national" | "regional" | "local"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +332,19 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: [
+        "PLATFORM_SUPER_ADMIN",
+        "STRATEGY_ADMIN",
+        "NATIONAL_MANAGER",
+        "REGIONAL_MANAGER",
+        "LOCAL_MANAGER",
+        "ACTIVITY_OWNER",
+        "REVIEWER",
+        "EVALUATOR",
+        "VIEWER",
+      ],
+      org_level: ["national", "regional", "local"],
+    },
   },
 } as const
