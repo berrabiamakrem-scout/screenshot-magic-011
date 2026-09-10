@@ -14,6 +14,360 @@ export type Database = {
   }
   public: {
     Tables: {
+      activities: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          budget: number | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          end_date: string | null
+          expected_beneficiaries: number | null
+          id: string
+          org_unit_id: string
+          owner_id: string | null
+          phase_id: string | null
+          phase_objective_id: string | null
+          plan_id: string | null
+          progress_percent: number | null
+          progress_status: Database["public"]["Enums"]["progress_status"]
+          season_id: string
+          start_date: string | null
+          strategic_objective_id: string | null
+          submitted_at: string | null
+          title: string
+          updated_at: string
+          workflow_status: Database["public"]["Enums"]["workflow_status"]
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          budget?: number | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          end_date?: string | null
+          expected_beneficiaries?: number | null
+          id?: string
+          org_unit_id: string
+          owner_id?: string | null
+          phase_id?: string | null
+          phase_objective_id?: string | null
+          plan_id?: string | null
+          progress_percent?: number | null
+          progress_status?: Database["public"]["Enums"]["progress_status"]
+          season_id: string
+          start_date?: string | null
+          strategic_objective_id?: string | null
+          submitted_at?: string | null
+          title: string
+          updated_at?: string
+          workflow_status?: Database["public"]["Enums"]["workflow_status"]
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          budget?: number | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          end_date?: string | null
+          expected_beneficiaries?: number | null
+          id?: string
+          org_unit_id?: string
+          owner_id?: string | null
+          phase_id?: string | null
+          phase_objective_id?: string | null
+          plan_id?: string | null
+          progress_percent?: number | null
+          progress_status?: Database["public"]["Enums"]["progress_status"]
+          season_id?: string
+          start_date?: string | null
+          strategic_objective_id?: string | null
+          submitted_at?: string | null
+          title?: string
+          updated_at?: string
+          workflow_status?: Database["public"]["Enums"]["workflow_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activities_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activities_phase_id_fkey"
+            columns: ["phase_id"]
+            isOneToOne: false
+            referencedRelation: "strategy_phases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activities_phase_objective_id_fkey"
+            columns: ["phase_objective_id"]
+            isOneToOne: false
+            referencedRelation: "phase_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activities_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "plans"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activities_season_id_fkey"
+            columns: ["season_id"]
+            isOneToOne: false
+            referencedRelation: "seasons"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activities_strategic_objective_id_fkey"
+            columns: ["strategic_objective_id"]
+            isOneToOne: false
+            referencedRelation: "strategic_objectives"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      activity_indicators: {
+        Row: {
+          activity_id: string
+          created_at: string
+          custom_indicator_id: string | null
+          id: string
+          indicator_id: string | null
+          org_unit_id: string
+          target_value: number | null
+          weight: number
+        }
+        Insert: {
+          activity_id: string
+          created_at?: string
+          custom_indicator_id?: string | null
+          id?: string
+          indicator_id?: string | null
+          org_unit_id: string
+          target_value?: number | null
+          weight: number
+        }
+        Update: {
+          activity_id?: string
+          created_at?: string
+          custom_indicator_id?: string | null
+          id?: string
+          indicator_id?: string | null
+          org_unit_id?: string
+          target_value?: number | null
+          weight?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_indicators_activity_id_fkey"
+            columns: ["activity_id"]
+            isOneToOne: false
+            referencedRelation: "activities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activity_indicators_custom_indicator_id_fkey"
+            columns: ["custom_indicator_id"]
+            isOneToOne: false
+            referencedRelation: "custom_indicators"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activity_indicators_indicator_id_fkey"
+            columns: ["indicator_id"]
+            isOneToOne: false
+            referencedRelation: "indicators"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activity_indicators_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      activity_progress_history: {
+        Row: {
+          activity_id: string
+          changed_at: string
+          changed_by: string | null
+          evidence_file_id: string | null
+          from_status: Database["public"]["Enums"]["progress_status"] | null
+          id: string
+          note: string
+          org_unit_id: string
+          percent: number
+          to_status: Database["public"]["Enums"]["progress_status"]
+        }
+        Insert: {
+          activity_id: string
+          changed_at?: string
+          changed_by?: string | null
+          evidence_file_id?: string | null
+          from_status?: Database["public"]["Enums"]["progress_status"] | null
+          id?: string
+          note: string
+          org_unit_id: string
+          percent: number
+          to_status: Database["public"]["Enums"]["progress_status"]
+        }
+        Update: {
+          activity_id?: string
+          changed_at?: string
+          changed_by?: string | null
+          evidence_file_id?: string | null
+          from_status?: Database["public"]["Enums"]["progress_status"] | null
+          id?: string
+          note?: string
+          org_unit_id?: string
+          percent?: number
+          to_status?: Database["public"]["Enums"]["progress_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "activity_progress_history_activity_id_fkey"
+            columns: ["activity_id"]
+            isOneToOne: false
+            referencedRelation: "activities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activity_progress_history_evidence_file_id_fkey"
+            columns: ["evidence_file_id"]
+            isOneToOne: false
+            referencedRelation: "evidence_files"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "activity_progress_history_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      approval_requests: {
+        Row: {
+          approver_role: Database["public"]["Enums"]["app_role"] | null
+          approver_unit_id: string | null
+          created_at: string
+          decision_at: string | null
+          decision_by: string | null
+          entity_id: string
+          entity_type: string
+          id: string
+          note: string | null
+          reason: string | null
+          requested_by: string
+          requester_unit_id: string
+          status: Database["public"]["Enums"]["workflow_status"]
+          updated_at: string
+        }
+        Insert: {
+          approver_role?: Database["public"]["Enums"]["app_role"] | null
+          approver_unit_id?: string | null
+          created_at?: string
+          decision_at?: string | null
+          decision_by?: string | null
+          entity_id: string
+          entity_type: string
+          id?: string
+          note?: string | null
+          reason?: string | null
+          requested_by?: string
+          requester_unit_id: string
+          status?: Database["public"]["Enums"]["workflow_status"]
+          updated_at?: string
+        }
+        Update: {
+          approver_role?: Database["public"]["Enums"]["app_role"] | null
+          approver_unit_id?: string | null
+          created_at?: string
+          decision_at?: string | null
+          decision_by?: string | null
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          note?: string | null
+          reason?: string | null
+          requested_by?: string
+          requester_unit_id?: string
+          status?: Database["public"]["Enums"]["workflow_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "approval_requests_approver_unit_id_fkey"
+            columns: ["approver_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "approval_requests_requester_unit_id_fkey"
+            columns: ["requester_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      custom_indicators: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description_ar: string | null
+          direction: Database["public"]["Enums"]["indicator_direction"]
+          id: string
+          name_ar: string
+          org_unit_id: string
+          unit_of_measure: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description_ar?: string | null
+          direction?: Database["public"]["Enums"]["indicator_direction"]
+          id?: string
+          name_ar: string
+          org_unit_id: string
+          unit_of_measure?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description_ar?: string | null
+          direction?: Database["public"]["Enums"]["indicator_direction"]
+          id?: string
+          name_ar?: string
+          org_unit_id?: string
+          unit_of_measure?: string | null
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "custom_indicators_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       data_catalog: {
         Row: {
           category: string
@@ -175,6 +529,362 @@ export type Database = {
             columns: ["swot_item_id"]
             isOneToOne: false
             referencedRelation: "swot_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      evidence_files: {
+        Row: {
+          created_at: string
+          entity_id: string
+          entity_type: string
+          filename: string | null
+          id: string
+          org_unit_id: string
+          storage_path: string
+          uploaded_by: string | null
+        }
+        Insert: {
+          created_at?: string
+          entity_id: string
+          entity_type: string
+          filename?: string | null
+          id?: string
+          org_unit_id: string
+          storage_path: string
+          uploaded_by?: string | null
+        }
+        Update: {
+          created_at?: string
+          entity_id?: string
+          entity_type?: string
+          filename?: string | null
+          id?: string
+          org_unit_id?: string
+          storage_path?: string
+          uploaded_by?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "evidence_files_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      indicator_baselines: {
+        Row: {
+          created_at: string
+          id: string
+          indicator_id: string
+          methodology: string | null
+          org_unit_id: string | null
+          reference_date: string | null
+          reference_year: number | null
+          source: string | null
+          status: Database["public"]["Enums"]["baseline_status"]
+          updated_at: string
+          validated_by: string | null
+          value: number | null
+          value_text: string | null
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          indicator_id: string
+          methodology?: string | null
+          org_unit_id?: string | null
+          reference_date?: string | null
+          reference_year?: number | null
+          source?: string | null
+          status?: Database["public"]["Enums"]["baseline_status"]
+          updated_at?: string
+          validated_by?: string | null
+          value?: number | null
+          value_text?: string | null
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          indicator_id?: string
+          methodology?: string | null
+          org_unit_id?: string | null
+          reference_date?: string | null
+          reference_year?: number | null
+          source?: string | null
+          status?: Database["public"]["Enums"]["baseline_status"]
+          updated_at?: string
+          validated_by?: string | null
+          value?: number | null
+          value_text?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "indicator_baselines_indicator_id_fkey"
+            columns: ["indicator_id"]
+            isOneToOne: false
+            referencedRelation: "indicators"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "indicator_baselines_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      indicator_results: {
+        Row: {
+          activity_id: string | null
+          actual_value: number | null
+          created_at: string
+          custom_indicator_id: string | null
+          id: string
+          indicator_id: string | null
+          org_unit_id: string
+          qualitative_note: string | null
+          reported_at: string
+          reported_by: string | null
+          review_note: string | null
+          reviewer_id: string | null
+          season_id: string | null
+          status: Database["public"]["Enums"]["workflow_status"]
+          updated_at: string
+          verified_at: string | null
+        }
+        Insert: {
+          activity_id?: string | null
+          actual_value?: number | null
+          created_at?: string
+          custom_indicator_id?: string | null
+          id?: string
+          indicator_id?: string | null
+          org_unit_id: string
+          qualitative_note?: string | null
+          reported_at?: string
+          reported_by?: string | null
+          review_note?: string | null
+          reviewer_id?: string | null
+          season_id?: string | null
+          status?: Database["public"]["Enums"]["workflow_status"]
+          updated_at?: string
+          verified_at?: string | null
+        }
+        Update: {
+          activity_id?: string | null
+          actual_value?: number | null
+          created_at?: string
+          custom_indicator_id?: string | null
+          id?: string
+          indicator_id?: string | null
+          org_unit_id?: string
+          qualitative_note?: string | null
+          reported_at?: string
+          reported_by?: string | null
+          review_note?: string | null
+          reviewer_id?: string | null
+          season_id?: string | null
+          status?: Database["public"]["Enums"]["workflow_status"]
+          updated_at?: string
+          verified_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "indicator_results_activity_id_fkey"
+            columns: ["activity_id"]
+            isOneToOne: false
+            referencedRelation: "activities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "indicator_results_custom_indicator_id_fkey"
+            columns: ["custom_indicator_id"]
+            isOneToOne: false
+            referencedRelation: "custom_indicators"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "indicator_results_indicator_id_fkey"
+            columns: ["indicator_id"]
+            isOneToOne: false
+            referencedRelation: "indicators"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "indicator_results_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "indicator_results_season_id_fkey"
+            columns: ["season_id"]
+            isOneToOne: false
+            referencedRelation: "seasons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      indicator_targets: {
+        Row: {
+          created_at: string
+          effective_from: string | null
+          id: string
+          indicator_id: string
+          org_unit_id: string | null
+          phase_id: string | null
+          scope: string
+          season_id: string | null
+          target_text: string | null
+          target_value: number | null
+          updated_at: string
+          version: number
+        }
+        Insert: {
+          created_at?: string
+          effective_from?: string | null
+          id?: string
+          indicator_id: string
+          org_unit_id?: string | null
+          phase_id?: string | null
+          scope: string
+          season_id?: string | null
+          target_text?: string | null
+          target_value?: number | null
+          updated_at?: string
+          version?: number
+        }
+        Update: {
+          created_at?: string
+          effective_from?: string | null
+          id?: string
+          indicator_id?: string
+          org_unit_id?: string | null
+          phase_id?: string | null
+          scope?: string
+          season_id?: string | null
+          target_text?: string | null
+          target_value?: number | null
+          updated_at?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "indicator_targets_indicator_id_fkey"
+            columns: ["indicator_id"]
+            isOneToOne: false
+            referencedRelation: "indicators"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "indicator_targets_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "indicator_targets_phase_id_fkey"
+            columns: ["phase_id"]
+            isOneToOne: false
+            referencedRelation: "strategy_phases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "indicator_targets_season_id_fkey"
+            columns: ["season_id"]
+            isOneToOne: false
+            referencedRelation: "seasons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      indicators: {
+        Row: {
+          calculation_method: string | null
+          code: string
+          created_at: string
+          data_source: string | null
+          description_ar: string | null
+          direction: Database["public"]["Enums"]["indicator_direction"]
+          id: string
+          name_ar: string
+          periodicity: string | null
+          phase_objective_id: string | null
+          responsible_unit_id: string | null
+          status: Database["public"]["Enums"]["record_status"]
+          supersedes_id: string | null
+          type: Database["public"]["Enums"]["indicator_type"]
+          unit_of_measure: string | null
+          updated_at: string
+          verification_method: string | null
+          version: number
+        }
+        Insert: {
+          calculation_method?: string | null
+          code: string
+          created_at?: string
+          data_source?: string | null
+          description_ar?: string | null
+          direction?: Database["public"]["Enums"]["indicator_direction"]
+          id?: string
+          name_ar: string
+          periodicity?: string | null
+          phase_objective_id?: string | null
+          responsible_unit_id?: string | null
+          status?: Database["public"]["Enums"]["record_status"]
+          supersedes_id?: string | null
+          type?: Database["public"]["Enums"]["indicator_type"]
+          unit_of_measure?: string | null
+          updated_at?: string
+          verification_method?: string | null
+          version?: number
+        }
+        Update: {
+          calculation_method?: string | null
+          code?: string
+          created_at?: string
+          data_source?: string | null
+          description_ar?: string | null
+          direction?: Database["public"]["Enums"]["indicator_direction"]
+          id?: string
+          name_ar?: string
+          periodicity?: string | null
+          phase_objective_id?: string | null
+          responsible_unit_id?: string | null
+          status?: Database["public"]["Enums"]["record_status"]
+          supersedes_id?: string | null
+          type?: Database["public"]["Enums"]["indicator_type"]
+          unit_of_measure?: string | null
+          updated_at?: string
+          verification_method?: string | null
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "indicators_phase_objective_id_fkey"
+            columns: ["phase_objective_id"]
+            isOneToOne: false
+            referencedRelation: "phase_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "indicators_responsible_unit_id_fkey"
+            columns: ["responsible_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "indicators_supersedes_id_fkey"
+            columns: ["supersedes_id"]
+            isOneToOne: false
+            referencedRelation: "indicators"
             referencedColumns: ["id"]
           },
         ]
@@ -476,6 +1186,66 @@ export type Database = {
             columns: ["supersedes_id"]
             isOneToOne: false
             referencedRelation: "phase_objectives"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      plans: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          org_unit_id: string
+          season_id: string
+          status: Database["public"]["Enums"]["workflow_status"]
+          submitted_at: string | null
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          org_unit_id: string
+          season_id: string
+          status?: Database["public"]["Enums"]["workflow_status"]
+          submitted_at?: string | null
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          org_unit_id?: string
+          season_id?: string
+          status?: Database["public"]["Enums"]["workflow_status"]
+          submitted_at?: string | null
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "plans_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "plans_season_id_fkey"
+            columns: ["season_id"]
+            isOneToOne: false
+            referencedRelation: "seasons"
             referencedColumns: ["id"]
           },
         ]
@@ -1263,6 +2033,10 @@ export type Database = {
       }
       is_strategy_admin: { Args: never; Returns: boolean }
       is_super_admin: { Args: never; Returns: boolean }
+      progress_percent: {
+        Args: { _s: Database["public"]["Enums"]["progress_status"] }
+        Returns: number
+      }
       rebuild_org_unit_closure: { Args: never; Returns: undefined }
     }
     Enums: {
@@ -1276,7 +2050,14 @@ export type Database = {
         | "REVIEWER"
         | "EVALUATOR"
         | "VIEWER"
+      baseline_status:
+        | "adopted"
+        | "needs_measurement"
+        | "provisional"
+        | "unavailable"
       diagnosis_type: "swot" | "pestel"
+      indicator_direction: "higher_better" | "lower_better" | "maintain_range"
+      indicator_type: "quantitative" | "qualitative"
       org_level: "national" | "regional" | "local"
       pestel_dimension:
         | "political"
@@ -1285,10 +2066,17 @@ export type Database = {
         | "technological"
         | "environmental"
         | "legal"
+      progress_status:
+        | "not_started"
+        | "preparing"
+        | "in_progress"
+        | "advanced"
+        | "completed"
       record_status: "draft" | "active" | "archived"
       swot_type: "strength" | "weakness" | "opportunity" | "threat"
       validation_status: "draft" | "submitted" | "validated" | "rejected"
       weight_set_status: "draft" | "approved" | "active" | "archived"
+      workflow_status: "draft" | "submitted" | "approved" | "returned"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -1427,7 +2215,15 @@ export const Constants = {
         "EVALUATOR",
         "VIEWER",
       ],
+      baseline_status: [
+        "adopted",
+        "needs_measurement",
+        "provisional",
+        "unavailable",
+      ],
       diagnosis_type: ["swot", "pestel"],
+      indicator_direction: ["higher_better", "lower_better", "maintain_range"],
+      indicator_type: ["quantitative", "qualitative"],
       org_level: ["national", "regional", "local"],
       pestel_dimension: [
         "political",
@@ -1437,10 +2233,18 @@ export const Constants = {
         "environmental",
         "legal",
       ],
+      progress_status: [
+        "not_started",
+        "preparing",
+        "in_progress",
+        "advanced",
+        "completed",
+      ],
       record_status: ["draft", "active", "archived"],
       swot_type: ["strength", "weakness", "opportunity", "threat"],
       validation_status: ["draft", "submitted", "validated", "rejected"],
       weight_set_status: ["draft", "approved", "active", "archived"],
+      workflow_status: ["draft", "submitted", "approved", "returned"],
     },
   },
 } as const
