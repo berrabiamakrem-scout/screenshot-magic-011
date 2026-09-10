@@ -32,14 +32,15 @@ function Index() {
   return (
     <AppShell>
       <HeroSection />
-      <VisionMissionValues />
       <StrategicPaths />
       <StrategicPriorities />
       <OperationalSummary />
-      <div className="grid gap-4 lg:grid-cols-2">
+      <div className="grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
         <ContributionToImpact37 />
         <QuickActions />
+        <CurrentPhaseCard />
       </div>
+
     </AppShell>
   );
 }
