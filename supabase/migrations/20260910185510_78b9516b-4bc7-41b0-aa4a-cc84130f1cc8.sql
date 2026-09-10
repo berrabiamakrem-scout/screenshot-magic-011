@@ -1,0 +1,1 @@
+ALTER TABLE public.priorities DROP CONSTRAINT IF EXISTS priorities_path_number_unique;
