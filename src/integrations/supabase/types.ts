@@ -324,6 +324,45 @@ export type Database = {
           },
         ]
       }
+      audit_log: {
+        Row: {
+          action: string
+          actor_id: string | null
+          approval_request_id: string | null
+          entity_id: string | null
+          entity_type: string
+          id: string
+          new_value: Json | null
+          occurred_at: string
+          old_value: Json | null
+          reason: string | null
+        }
+        Insert: {
+          action: string
+          actor_id?: string | null
+          approval_request_id?: string | null
+          entity_id?: string | null
+          entity_type: string
+          id?: string
+          new_value?: Json | null
+          occurred_at?: string
+          old_value?: Json | null
+          reason?: string | null
+        }
+        Update: {
+          action?: string
+          actor_id?: string | null
+          approval_request_id?: string | null
+          entity_id?: string | null
+          entity_type?: string
+          id?: string
+          new_value?: Json | null
+          occurred_at?: string
+          old_value?: Json | null
+          reason?: string | null
+        }
+        Relationships: []
+      }
       custom_indicators: {
         Row: {
           created_at: string
@@ -573,6 +612,336 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      governance_bodies: {
+        Row: {
+          active: boolean
+          created_at: string
+          id: string
+          name_ar: string
+          org_unit_id: string
+          rule_id: string | null
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          name_ar: string
+          org_unit_id: string
+          rule_id?: string | null
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          created_at?: string
+          id?: string
+          name_ar?: string
+          org_unit_id?: string
+          rule_id?: string | null
+          type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "governance_bodies_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "governance_bodies_rule_id_fkey"
+            columns: ["rule_id"]
+            isOneToOne: false
+            referencedRelation: "governance_rules"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      governance_date_changes: {
+        Row: {
+          approver_id: string | null
+          created_at: string
+          decision_date: string | null
+          event_id: string
+          id: string
+          org_unit_id: string
+          previous_date: string | null
+          proposed_date: string
+          reason: string
+          report_file_id: string | null
+          requester_id: string
+          status: Database["public"]["Enums"]["workflow_status"]
+        }
+        Insert: {
+          approver_id?: string | null
+          created_at?: string
+          decision_date?: string | null
+          event_id: string
+          id?: string
+          org_unit_id: string
+          previous_date?: string | null
+          proposed_date: string
+          reason: string
+          report_file_id?: string | null
+          requester_id?: string
+          status?: Database["public"]["Enums"]["workflow_status"]
+        }
+        Update: {
+          approver_id?: string | null
+          created_at?: string
+          decision_date?: string | null
+          event_id?: string
+          id?: string
+          org_unit_id?: string
+          previous_date?: string | null
+          proposed_date?: string
+          reason?: string
+          report_file_id?: string | null
+          requester_id?: string
+          status?: Database["public"]["Enums"]["workflow_status"]
+        }
+        Relationships: [
+          {
+            foreignKeyName: "governance_date_changes_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "governance_events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "governance_date_changes_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "governance_date_changes_report_file_id_fkey"
+            columns: ["report_file_id"]
+            isOneToOne: false
+            referencedRelation: "evidence_files"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      governance_decisions: {
+        Row: {
+          created_at: string
+          due_date: string | null
+          event_id: string
+          id: string
+          org_unit_id: string
+          owner: string | null
+          status: string
+          text_ar: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          due_date?: string | null
+          event_id: string
+          id?: string
+          org_unit_id: string
+          owner?: string | null
+          status?: string
+          text_ar: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          due_date?: string | null
+          event_id?: string
+          id?: string
+          org_unit_id?: string
+          owner?: string | null
+          status?: string
+          text_ar?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "governance_decisions_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "governance_events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "governance_decisions_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      governance_events: {
+        Row: {
+          approved_date: string | null
+          body_id: string | null
+          created_at: string
+          created_by: string | null
+          generated_from_rule_id: string | null
+          id: string
+          org_unit_id: string
+          proposed_date: string | null
+          reference_date: string
+          status: string
+          title: string | null
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          approved_date?: string | null
+          body_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          generated_from_rule_id?: string | null
+          id?: string
+          org_unit_id: string
+          proposed_date?: string | null
+          reference_date: string
+          status?: string
+          title?: string | null
+          type: string
+          updated_at?: string
+        }
+        Update: {
+          approved_date?: string | null
+          body_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          generated_from_rule_id?: string | null
+          id?: string
+          org_unit_id?: string
+          proposed_date?: string | null
+          reference_date?: string
+          status?: string
+          title?: string | null
+          type?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "governance_events_body_id_fkey"
+            columns: ["body_id"]
+            isOneToOne: false
+            referencedRelation: "governance_bodies"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "governance_events_generated_from_rule_id_fkey"
+            columns: ["generated_from_rule_id"]
+            isOneToOne: false
+            referencedRelation: "governance_rules"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "governance_events_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      governance_minutes: {
+        Row: {
+          content: string | null
+          created_at: string
+          created_by: string | null
+          event_id: string
+          file_id: string | null
+          id: string
+          org_unit_id: string
+          updated_at: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          created_by?: string | null
+          event_id: string
+          file_id?: string | null
+          id?: string
+          org_unit_id: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          created_by?: string | null
+          event_id?: string
+          file_id?: string | null
+          id?: string
+          org_unit_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "governance_minutes_event_id_fkey"
+            columns: ["event_id"]
+            isOneToOne: false
+            referencedRelation: "governance_events"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "governance_minutes_file_id_fkey"
+            columns: ["file_id"]
+            isOneToOne: false
+            referencedRelation: "evidence_files"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "governance_minutes_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      governance_rules: {
+        Row: {
+          active: boolean
+          body_type: string
+          created_at: string
+          description_ar: string | null
+          event_type: string
+          frequency_months: number | null
+          id: string
+          level: Database["public"]["Enums"]["org_level"]
+          notice_days: number | null
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          body_type: string
+          created_at?: string
+          description_ar?: string | null
+          event_type: string
+          frequency_months?: number | null
+          id?: string
+          level: Database["public"]["Enums"]["org_level"]
+          notice_days?: number | null
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          body_type?: string
+          created_at?: string
+          description_ar?: string | null
+          event_type?: string
+          frequency_months?: number | null
+          id?: string
+          level?: Database["public"]["Enums"]["org_level"]
+          notice_days?: number | null
+          updated_at?: string
+        }
+        Relationships: []
       }
       indicator_baselines: {
         Row: {
@@ -888,6 +1257,42 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      notification_rules: {
+        Row: {
+          active: boolean
+          channel: string
+          created_at: string
+          entity_type: string
+          event_type: string | null
+          id: string
+          message_template: string | null
+          offset_days: number
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          channel?: string
+          created_at?: string
+          entity_type: string
+          event_type?: string | null
+          id?: string
+          message_template?: string | null
+          offset_days: number
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          channel?: string
+          created_at?: string
+          entity_type?: string
+          event_type?: string | null
+          id?: string
+          message_template?: string | null
+          offset_days?: number
+          updated_at?: string
+        }
+        Relationships: []
       }
       org_unit_closure: {
         Row: {
@@ -1446,6 +1851,63 @@ export type Database = {
             columns: ["season_id"]
             isOneToOne: false
             referencedRelation: "seasons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reminders: {
+        Row: {
+          created_at: string
+          due_at: string
+          entity_id: string
+          entity_type: string
+          id: string
+          message: string | null
+          org_unit_id: string
+          recipient_id: string | null
+          rule_id: string | null
+          sent_at: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          due_at: string
+          entity_id: string
+          entity_type: string
+          id?: string
+          message?: string | null
+          org_unit_id: string
+          recipient_id?: string | null
+          rule_id?: string | null
+          sent_at?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          due_at?: string
+          entity_id?: string
+          entity_type?: string
+          id?: string
+          message?: string | null
+          org_unit_id?: string
+          recipient_id?: string | null
+          rule_id?: string | null
+          sent_at?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reminders_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reminders_rule_id_fkey"
+            columns: ["rule_id"]
+            isOneToOne: false
+            referencedRelation: "notification_rules"
             referencedColumns: ["id"]
           },
         ]
