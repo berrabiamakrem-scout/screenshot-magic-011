@@ -33,13 +33,15 @@ export const navItems: NavItem[] = [
 
 export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <div className="flex h-full flex-col gap-3 bg-sidebar">
+    <div className="flex h-full flex-col gap-3 bg-linear-to-b from-sidebar to-sidebar-accent/60 text-sidebar-foreground">
       <div className="px-5 pt-4">
-        <img
-          src={impactLogo.url}
-          alt="شعار أثر 37 – IMPACT 37"
-          className="mx-auto h-16 w-auto object-contain"
-        />
+        <div className="mx-auto w-fit rounded-xl bg-white px-3 py-2 shadow-card">
+          <img
+            src={impactLogo.url}
+            alt="شعار أثر 37 – IMPACT 37"
+            className="mx-auto h-16 w-auto object-contain"
+          />
+        </div>
       </div>
 
       <nav className="flex-1 space-y-0.5 px-3" aria-label="القائمة الرئيسية">
@@ -48,8 +50,8 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           const isActive = index === 0;
           const className = `flex items-center gap-2.5 rounded-lg px-3 py-1.5 text-[0.85rem] font-medium transition-colors ${
             isActive
-              ? "bg-navy text-primary-foreground shadow-card"
-              : "text-navy/80 hover:bg-sidebar-accent hover:text-navy"
+              ? "bg-sidebar-active text-white shadow-card ring-1 ring-teal/40"
+              : "text-sidebar-foreground/75 hover:bg-sidebar-accent/70 hover:text-white"
           }`;
 
           return item.to ? (
@@ -66,10 +68,10 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         })}
       </nav>
 
-      <div className="border-t border-border px-5 py-3">
-        <p className="text-[0.75rem] text-muted-foreground">معاً...</p>
-        <p className="font-display text-base font-bold text-navy">نصنع أثراً يدوم</p>
-        <p className="mt-0.5 text-[0.7rem] text-teal">{identity.tagline}</p>
+      <div className="border-t border-sidebar-border px-5 py-3">
+        <p className="text-[0.75rem] text-sidebar-foreground/60">معاً...</p>
+        <p className="font-display text-base font-bold text-white">نصنع أثراً يدوم</p>
+        <p className="mt-0.5 text-[0.7rem] text-teal-soft">{identity.tagline}</p>
       </div>
     </div>
   );
@@ -82,7 +84,7 @@ export function AppSidebar() {
       <div className="w-64 shrink-0 bg-transparent" aria-hidden />
 
       {/* Sidebar panel, explicitly anchored to the right edge */}
-      <aside className="fixed inset-y-0 right-0 z-20 w-64 overflow-y-auto border-e border-border bg-sidebar">
+      <aside className="fixed inset-y-0 right-0 z-20 w-64 overflow-y-auto border-e border-sidebar-border bg-sidebar">
         <SidebarContent />
       </aside>
     </div>
