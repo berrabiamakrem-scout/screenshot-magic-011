@@ -66,10 +66,10 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         })}
       </nav>
 
-      <div className="border-t border-border px-5 py-3">
-        <p className="text-[0.75rem] text-muted-foreground">معاً...</p>
-        <p className="font-display text-base font-bold text-navy">نصنع أثراً يدوم</p>
-        <p className="mt-0.5 text-[0.7rem] text-teal">{identity.tagline}</p>
+      <div className="border-t border-sidebar-border px-5 py-3">
+        <p className="text-[0.75rem] text-sidebar-foreground/60">معاً...</p>
+        <p className="font-display text-base font-bold text-white">نصنع أثراً يدوم</p>
+        <p className="mt-0.5 text-[0.7rem] text-teal-soft">{identity.tagline}</p>
       </div>
     </div>
   );
