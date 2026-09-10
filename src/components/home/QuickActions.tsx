@@ -13,7 +13,7 @@ export function QuickActions() {
   return (
     <section className="card-surface p-6">
       <h2 className="section-title">إجراءات سريعة</h2>
-      <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-2">
         {actions.map((action) => {
           const Icon = action.icon;
           const tone = toneClasses[action.tone];
