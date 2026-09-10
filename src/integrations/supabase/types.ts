@@ -1537,7 +1537,9 @@ export type Database = {
           created_at: string
           description_ar: string | null
           id: string
+          number: number | null
           phase_id: string
+          source_reference: string | null
           status: Database["public"]["Enums"]["record_status"]
           strategic_objective_id: string
           supersedes_id: string | null
@@ -1550,7 +1552,9 @@ export type Database = {
           created_at?: string
           description_ar?: string | null
           id?: string
+          number?: number | null
           phase_id: string
+          source_reference?: string | null
           status?: Database["public"]["Enums"]["record_status"]
           strategic_objective_id: string
           supersedes_id?: string | null
@@ -1563,7 +1567,9 @@ export type Database = {
           created_at?: string
           description_ar?: string | null
           id?: string
+          number?: number | null
           phase_id?: string
+          source_reference?: string | null
           status?: Database["public"]["Enums"]["record_status"]
           strategic_objective_id?: string
           supersedes_id?: string | null
@@ -2148,36 +2154,62 @@ export type Database = {
       }
       strategic_objectives: {
         Row: {
+          active_from_phase_id: string | null
+          active_to_phase_id: string | null
           code: string
           created_at: string
           description_ar: string | null
           id: string
+          number: number | null
           priority_id: string
+          source_reference: string | null
           status: Database["public"]["Enums"]["record_status"]
           title_ar: string
           updated_at: string
         }
         Insert: {
+          active_from_phase_id?: string | null
+          active_to_phase_id?: string | null
           code: string
           created_at?: string
           description_ar?: string | null
           id?: string
+          number?: number | null
           priority_id: string
+          source_reference?: string | null
           status?: Database["public"]["Enums"]["record_status"]
           title_ar: string
           updated_at?: string
         }
         Update: {
+          active_from_phase_id?: string | null
+          active_to_phase_id?: string | null
           code?: string
           created_at?: string
           description_ar?: string | null
           id?: string
+          number?: number | null
           priority_id?: string
+          source_reference?: string | null
           status?: Database["public"]["Enums"]["record_status"]
           title_ar?: string
           updated_at?: string
         }
         Relationships: [
+          {
+            foreignKeyName: "strategic_objectives_active_from_phase_id_fkey"
+            columns: ["active_from_phase_id"]
+            isOneToOne: false
+            referencedRelation: "strategy_phases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "strategic_objectives_active_to_phase_id_fkey"
+            columns: ["active_to_phase_id"]
+            isOneToOne: false
+            referencedRelation: "strategy_phases"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "strategic_objectives_priority_id_fkey"
             columns: ["priority_id"]
