@@ -48,8 +48,8 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           const isActive = index === 0;
           const className = `flex items-center gap-2.5 rounded-lg px-3 py-1.5 text-[0.85rem] font-medium transition-colors ${
             isActive
-              ? "bg-navy text-primary-foreground shadow-card"
-              : "text-navy/80 hover:bg-sidebar-accent hover:text-navy"
+              ? "bg-sidebar-active text-white shadow-card ring-1 ring-teal/40"
+              : "text-sidebar-foreground/75 hover:bg-sidebar-accent/70 hover:text-white"
           }`;
 
           return item.to ? (
