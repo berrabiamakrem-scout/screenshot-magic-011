@@ -1,24 +1,44 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { AppShell } from "@/components/layout/AppShell";
+import { HeroSection } from "@/components/home/HeroSection";
+import { VisionMissionValues } from "@/components/home/VisionMissionValues";
+import { StrategicPaths } from "@/components/home/StrategicPaths";
+import { StrategicPriorities } from "@/components/home/StrategicPriorities";
+import { OperationalSummary } from "@/components/home/OperationalSummary";
+import { ContributionToImpact37 } from "@/components/home/ContributionToImpact37";
+import { QuickActions } from "@/components/home/QuickActions";
+
+const title = "منظومة أثر 37 لإدارة الاستراتيجية | الكشافة التونسية";
+const description =
+  "منظومة أثر 37 لإدارة الاستراتيجية: المسارات الأربعة والأولويات الثمانية ومتابعة الأنشطة نحو حركة شبابية ملهمة ومؤثرة.";
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <AppShell>
+      <HeroSection />
+      <VisionMissionValues />
+      <StrategicPaths />
+      <StrategicPriorities />
+      <OperationalSummary />
+      <div className="grid gap-4 lg:grid-cols-2">
+        <ContributionToImpact37 />
+        <QuickActions />
+      </div>
+    </AppShell>
   );
 }
