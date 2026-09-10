@@ -4,7 +4,7 @@ import { SectionHeader } from "@/components/layout/AppShell";
 import { strategicPaths } from "@/data/impact37";
 import { toneClasses } from "@/lib/tone";
 
-const pathIcons = [BookOpen, Building2, Megaphone, Compass];
+const pathIcons = [BookOpen, Building2, Megaphone, Compass] as const;
 
 export function StrategicPaths() {
   return (
@@ -12,7 +12,7 @@ export function StrategicPaths() {
       <SectionHeader title="المسارات الاستراتيجية لأثر 37" action={{ label: "عرض جميع المسارات" }} />
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         {strategicPaths.map((path, index) => {
-          const Icon = pathIcons[index];
+          const Icon = pathIcons[index % pathIcons.length]!;
           const tone = toneClasses[path.tone];
           return (
             <article key={path.number} className="card-surface flex flex-col gap-3 p-5">
