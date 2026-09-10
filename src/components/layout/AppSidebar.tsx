@@ -33,7 +33,7 @@ export const navItems: NavItem[] = [
 
 export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   return (
-    <div className="flex h-full flex-col gap-3 bg-sidebar">
+    <div className="flex h-full flex-col gap-3 bg-linear-to-b from-sidebar to-sidebar-accent/60 text-sidebar-foreground">
       <div className="px-5 pt-4">
         <img
           src={impactLogo.url}
