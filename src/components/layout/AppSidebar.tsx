@@ -77,10 +77,14 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 
 export function AppSidebar() {
   return (
-    <aside className="hidden w-64 shrink-0 border-e border-border bg-sidebar lg:block">
-      <div className="sticky top-0 h-screen overflow-y-auto">
+    <div className="hidden lg:block">
+      {/* Spacer that reserves space on the right for the sidebar */}
+      <div className="w-64 shrink-0 bg-transparent" aria-hidden />
+
+      {/* Sidebar panel, explicitly anchored to the right edge */}
+      <aside className="fixed inset-y-0 right-0 z-20 w-64 overflow-y-auto border-e border-border bg-sidebar">
         <SidebarContent />
-      </div>
-    </aside>
+      </aside>
+    </div>
   );
 }
