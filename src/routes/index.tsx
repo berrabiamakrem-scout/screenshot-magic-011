@@ -2,12 +2,13 @@ import { createFileRoute } from "@tanstack/react-router";
 
 import { AppShell } from "@/components/layout/AppShell";
 import { HeroSection } from "@/components/home/HeroSection";
-import { VisionMissionValues } from "@/components/home/VisionMissionValues";
 import { StrategicPaths } from "@/components/home/StrategicPaths";
 import { StrategicPriorities } from "@/components/home/StrategicPriorities";
 import { OperationalSummary } from "@/components/home/OperationalSummary";
 import { ContributionToImpact37 } from "@/components/home/ContributionToImpact37";
 import { QuickActions } from "@/components/home/QuickActions";
+import { CurrentPhaseCard } from "@/components/home/CurrentPhaseCard";
+
 
 const title = "منظومة أثر 37 لإدارة الاستراتيجية | الكشافة التونسية";
 const description =
