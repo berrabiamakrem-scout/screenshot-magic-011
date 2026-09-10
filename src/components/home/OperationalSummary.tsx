@@ -58,20 +58,21 @@ const stats: Stat[] = [
 
 export function OperationalSummary() {
   return (
-    <section className="grid gap-4 grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+    <section className="grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-6">
       {stats.map((stat) => {
         const Icon = stat.icon;
         const tone = toneClasses[stat.tone];
         return (
-          <article key={stat.label} className="card-surface p-4">
+          <article
+            key={stat.label}
+            className={`rounded-xl border border-border p-4 shadow-sm ${tone.soft}`}
+          >
             <header className="mb-2 flex items-center justify-between gap-2">
-              <h3 className="text-sm font-semibold text-navy">{stat.label}</h3>
-              <span className={`rounded-lg p-1.5 ${tone.soft}`}>
-                <Icon className={`size-4 ${tone.text}`} aria-hidden />
-              </span>
+              <h3 className="text-[0.8rem] font-semibold text-navy">{stat.label}</h3>
+              <Icon className={`size-4 shrink-0 ${tone.text}`} aria-hidden />
             </header>
-            <p className="font-display text-xl font-bold text-navy">{stat.value}</p>
-            <p className="mt-1 text-xs text-muted-foreground">{stat.hint}</p>
+            <p className={`font-display text-xl font-bold ${tone.text}`}>{stat.value}</p>
+            <p className="mt-1 text-[0.7rem] text-muted-foreground">{stat.hint}</p>
           </article>
         );
       })}

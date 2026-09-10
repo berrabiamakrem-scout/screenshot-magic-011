@@ -13,7 +13,7 @@ export function QuickActions() {
   return (
     <section className="card-surface p-6">
       <h2 className="section-title">إجراءات سريعة</h2>
-      <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+      <div className="mt-4 grid gap-2.5 sm:grid-cols-2">
         {actions.map((action) => {
           const Icon = action.icon;
           const tone = toneClasses[action.tone];
@@ -21,13 +21,14 @@ export function QuickActions() {
             <button
               key={action.label}
               type="button"
-              className="flex items-center gap-3 rounded-xl border border-border bg-surface px-4 py-3 text-start text-sm font-semibold text-navy transition-colors hover:border-teal hover:bg-secondary"
+              className="flex items-center gap-2 rounded-xl border border-border bg-surface px-3 py-2.5 text-start text-[0.78rem] font-semibold text-navy transition-colors hover:border-teal hover:bg-secondary"
             >
-              <span className={`rounded-lg p-2 ${tone.soft}`}>
+              <span className={`shrink-0 rounded-lg p-1.5 ${tone.soft}`}>
                 <Icon className={`size-4 ${tone.text}`} aria-hidden />
               </span>
               {action.label}
             </button>
+
           );
         })}
       </div>
