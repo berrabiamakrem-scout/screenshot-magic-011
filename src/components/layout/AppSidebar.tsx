@@ -82,7 +82,7 @@ export function AppSidebar() {
       <div className="w-64 shrink-0 bg-transparent" aria-hidden />
 
       {/* Sidebar panel, explicitly anchored to the right edge */}
-      <aside className="fixed inset-y-0 right-0 z-20 w-64 overflow-y-auto border-e border-border bg-sidebar">
+      <aside className="fixed inset-y-0 right-0 z-20 w-64 overflow-y-auto border-e border-sidebar-border bg-sidebar">
         <SidebarContent />
       </aside>
     </div>
