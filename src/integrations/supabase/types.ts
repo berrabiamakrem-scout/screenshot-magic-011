@@ -47,6 +47,138 @@ export type Database = {
         }
         Relationships: []
       }
+      diagnoses: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          created_at: string
+          created_by: string | null
+          id: string
+          org_unit_id: string
+          phase_id: string | null
+          season_id: string | null
+          status: Database["public"]["Enums"]["validation_status"]
+          title: string | null
+          type: Database["public"]["Enums"]["diagnosis_type"]
+          updated_at: string
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          org_unit_id: string
+          phase_id?: string | null
+          season_id?: string | null
+          status?: Database["public"]["Enums"]["validation_status"]
+          title?: string | null
+          type: Database["public"]["Enums"]["diagnosis_type"]
+          updated_at?: string
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          org_unit_id?: string
+          phase_id?: string | null
+          season_id?: string | null
+          status?: Database["public"]["Enums"]["validation_status"]
+          title?: string | null
+          type?: Database["public"]["Enums"]["diagnosis_type"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "diagnoses_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "diagnoses_phase_id_fkey"
+            columns: ["phase_id"]
+            isOneToOne: false
+            referencedRelation: "strategy_phases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "diagnoses_season_id_fkey"
+            columns: ["season_id"]
+            isOneToOne: false
+            referencedRelation: "seasons"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      diagnosis_evidence: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          file_path: string | null
+          id: string
+          note: string | null
+          org_unit_id: string
+          pestel_item_id: string | null
+          reference_data_id: string | null
+          swot_item_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          file_path?: string | null
+          id?: string
+          note?: string | null
+          org_unit_id: string
+          pestel_item_id?: string | null
+          reference_data_id?: string | null
+          swot_item_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          file_path?: string | null
+          id?: string
+          note?: string | null
+          org_unit_id?: string
+          pestel_item_id?: string | null
+          reference_data_id?: string | null
+          swot_item_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "diagnosis_evidence_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "diagnosis_evidence_pestel_item_id_fkey"
+            columns: ["pestel_item_id"]
+            isOneToOne: false
+            referencedRelation: "pestel_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "diagnosis_evidence_reference_data_id_fkey"
+            columns: ["reference_data_id"]
+            isOneToOne: false
+            referencedRelation: "reference_data"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "diagnosis_evidence_swot_item_id_fkey"
+            columns: ["swot_item_id"]
+            isOneToOne: false
+            referencedRelation: "swot_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       org_unit_closure: {
         Row: {
           ancestor_id: string
@@ -135,6 +267,151 @@ export type Database = {
             columns: ["parent_id"]
             isOneToOne: false
             referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pestel_items: {
+        Row: {
+          affected_areas: string[] | null
+          created_at: string
+          created_by: string | null
+          description: string
+          diagnosis_id: string
+          dimension: Database["public"]["Enums"]["pestel_dimension"]
+          id: string
+          impact_score: number | null
+          influence: string | null
+          org_unit_id: string
+          probability_score: number | null
+          source: string | null
+          status: Database["public"]["Enums"]["validation_status"]
+          updated_at: string
+        }
+        Insert: {
+          affected_areas?: string[] | null
+          created_at?: string
+          created_by?: string | null
+          description: string
+          diagnosis_id: string
+          dimension: Database["public"]["Enums"]["pestel_dimension"]
+          id?: string
+          impact_score?: number | null
+          influence?: string | null
+          org_unit_id: string
+          probability_score?: number | null
+          source?: string | null
+          status?: Database["public"]["Enums"]["validation_status"]
+          updated_at?: string
+        }
+        Update: {
+          affected_areas?: string[] | null
+          created_at?: string
+          created_by?: string | null
+          description?: string
+          diagnosis_id?: string
+          dimension?: Database["public"]["Enums"]["pestel_dimension"]
+          id?: string
+          impact_score?: number | null
+          influence?: string | null
+          org_unit_id?: string
+          probability_score?: number | null
+          source?: string | null
+          status?: Database["public"]["Enums"]["validation_status"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pestel_items_diagnosis_id_fkey"
+            columns: ["diagnosis_id"]
+            isOneToOne: false
+            referencedRelation: "diagnoses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pestel_items_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pestel_swot_links: {
+        Row: {
+          created_at: string
+          org_unit_id: string
+          pestel_item_id: string
+          swot_item_id: string
+        }
+        Insert: {
+          created_at?: string
+          org_unit_id: string
+          pestel_item_id: string
+          swot_item_id: string
+        }
+        Update: {
+          created_at?: string
+          org_unit_id?: string
+          pestel_item_id?: string
+          swot_item_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pestel_swot_links_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pestel_swot_links_pestel_item_id_fkey"
+            columns: ["pestel_item_id"]
+            isOneToOne: false
+            referencedRelation: "pestel_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "pestel_swot_links_swot_item_id_fkey"
+            columns: ["swot_item_id"]
+            isOneToOne: false
+            referencedRelation: "swot_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      phase_objective_weights: {
+        Row: {
+          id: string
+          phase_objective_id: string
+          weight: number
+          weight_set_id: string
+        }
+        Insert: {
+          id?: string
+          phase_objective_id: string
+          weight: number
+          weight_set_id: string
+        }
+        Update: {
+          id?: string
+          phase_objective_id?: string
+          weight?: number
+          weight_set_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "phase_objective_weights_phase_objective_id_fkey"
+            columns: ["phase_objective_id"]
+            isOneToOne: false
+            referencedRelation: "phase_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "phase_objective_weights_weight_set_id_fkey"
+            columns: ["weight_set_id"]
+            isOneToOne: false
+            referencedRelation: "weight_sets"
             referencedColumns: ["id"]
           },
         ]
@@ -240,6 +517,42 @@ export type Database = {
             columns: ["path_id"]
             isOneToOne: false
             referencedRelation: "strategic_paths"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      priority_weights: {
+        Row: {
+          id: string
+          priority_id: string
+          weight: number
+          weight_set_id: string
+        }
+        Insert: {
+          id?: string
+          priority_id: string
+          weight: number
+          weight_set_id: string
+        }
+        Update: {
+          id?: string
+          priority_id?: string
+          weight?: number
+          weight_set_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "priority_weights_priority_id_fkey"
+            columns: ["priority_id"]
+            isOneToOne: false
+            referencedRelation: "priorities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "priority_weights_weight_set_id_fkey"
+            columns: ["weight_set_id"]
+            isOneToOne: false
+            referencedRelation: "weight_sets"
             referencedColumns: ["id"]
           },
         ]
@@ -401,6 +714,202 @@ export type Database = {
             columns: ["phase_id"]
             isOneToOne: false
             referencedRelation: "strategy_phases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      strategic_issue_links: {
+        Row: {
+          id: string
+          issue_id: string
+          org_unit_id: string
+          priority_id: string | null
+          strategic_objective_id: string | null
+        }
+        Insert: {
+          id?: string
+          issue_id: string
+          org_unit_id: string
+          priority_id?: string | null
+          strategic_objective_id?: string | null
+        }
+        Update: {
+          id?: string
+          issue_id?: string
+          org_unit_id?: string
+          priority_id?: string | null
+          strategic_objective_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "strategic_issue_links_issue_id_fkey"
+            columns: ["issue_id"]
+            isOneToOne: false
+            referencedRelation: "strategic_issues"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "strategic_issue_links_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "strategic_issue_links_priority_id_fkey"
+            columns: ["priority_id"]
+            isOneToOne: false
+            referencedRelation: "priorities"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "strategic_issue_links_strategic_objective_id_fkey"
+            columns: ["strategic_objective_id"]
+            isOneToOne: false
+            referencedRelation: "strategic_objectives"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      strategic_issue_sources: {
+        Row: {
+          id: string
+          issue_id: string
+          org_unit_id: string
+          pestel_item_id: string | null
+          swot_item_id: string | null
+        }
+        Insert: {
+          id?: string
+          issue_id: string
+          org_unit_id: string
+          pestel_item_id?: string | null
+          swot_item_id?: string | null
+        }
+        Update: {
+          id?: string
+          issue_id?: string
+          org_unit_id?: string
+          pestel_item_id?: string | null
+          swot_item_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "strategic_issue_sources_issue_id_fkey"
+            columns: ["issue_id"]
+            isOneToOne: false
+            referencedRelation: "strategic_issues"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "strategic_issue_sources_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "strategic_issue_sources_pestel_item_id_fkey"
+            columns: ["pestel_item_id"]
+            isOneToOne: false
+            referencedRelation: "pestel_items"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "strategic_issue_sources_swot_item_id_fkey"
+            columns: ["swot_item_id"]
+            isOneToOne: false
+            referencedRelation: "swot_items"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      strategic_issues: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          org_unit_id: string
+          phase_id: string | null
+          rank: number | null
+          status: Database["public"]["Enums"]["validation_status"]
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          org_unit_id: string
+          phase_id?: string | null
+          rank?: number | null
+          status?: Database["public"]["Enums"]["validation_status"]
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          org_unit_id?: string
+          phase_id?: string | null
+          rank?: number | null
+          status?: Database["public"]["Enums"]["validation_status"]
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "strategic_issues_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "strategic_issues_phase_id_fkey"
+            columns: ["phase_id"]
+            isOneToOne: false
+            referencedRelation: "strategy_phases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      strategic_objective_weights: {
+        Row: {
+          id: string
+          strategic_objective_id: string
+          weight: number
+          weight_set_id: string
+        }
+        Insert: {
+          id?: string
+          strategic_objective_id: string
+          weight: number
+          weight_set_id: string
+        }
+        Update: {
+          id?: string
+          strategic_objective_id?: string
+          weight?: number
+          weight_set_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "strategic_objective_weights_strategic_objective_id_fkey"
+            columns: ["strategic_objective_id"]
+            isOneToOne: false
+            referencedRelation: "strategic_objectives"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "strategic_objective_weights_weight_set_id_fkey"
+            columns: ["weight_set_id"]
+            isOneToOne: false
+            referencedRelation: "weight_sets"
             referencedColumns: ["id"]
           },
         ]
@@ -567,6 +1076,85 @@ export type Database = {
           },
         ]
       }
+      swot_items: {
+        Row: {
+          analysis_area: string
+          approved_by: string | null
+          created_at: string
+          created_by: string | null
+          description: string
+          diagnosis_id: string
+          id: string
+          impact_score: number
+          notes: string | null
+          org_unit_id: string
+          phase_id: string | null
+          presence_score: number
+          result: number | null
+          status: Database["public"]["Enums"]["validation_status"]
+          type: Database["public"]["Enums"]["swot_type"]
+          updated_at: string
+        }
+        Insert: {
+          analysis_area: string
+          approved_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          description: string
+          diagnosis_id: string
+          id?: string
+          impact_score: number
+          notes?: string | null
+          org_unit_id: string
+          phase_id?: string | null
+          presence_score: number
+          result?: number | null
+          status?: Database["public"]["Enums"]["validation_status"]
+          type: Database["public"]["Enums"]["swot_type"]
+          updated_at?: string
+        }
+        Update: {
+          analysis_area?: string
+          approved_by?: string | null
+          created_at?: string
+          created_by?: string | null
+          description?: string
+          diagnosis_id?: string
+          id?: string
+          impact_score?: number
+          notes?: string | null
+          org_unit_id?: string
+          phase_id?: string | null
+          presence_score?: number
+          result?: number | null
+          status?: Database["public"]["Enums"]["validation_status"]
+          type?: Database["public"]["Enums"]["swot_type"]
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "swot_items_diagnosis_id_fkey"
+            columns: ["diagnosis_id"]
+            isOneToOne: false
+            referencedRelation: "diagnoses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "swot_items_org_unit_id_fkey"
+            columns: ["org_unit_id"]
+            isOneToOne: false
+            referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "swot_items_phase_id_fkey"
+            columns: ["phase_id"]
+            isOneToOne: false
+            referencedRelation: "strategy_phases"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -595,6 +1183,66 @@ export type Database = {
             columns: ["org_unit_id"]
             isOneToOne: false
             referencedRelation: "org_units"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      weight_sets: {
+        Row: {
+          approved_at: string | null
+          approved_by: string | null
+          change_reason: string | null
+          created_at: string
+          created_by: string | null
+          effective_from: string | null
+          id: string
+          phase_id: string | null
+          status: Database["public"]["Enums"]["weight_set_status"]
+          strategy_id: string
+          updated_at: string
+          version: number
+        }
+        Insert: {
+          approved_at?: string | null
+          approved_by?: string | null
+          change_reason?: string | null
+          created_at?: string
+          created_by?: string | null
+          effective_from?: string | null
+          id?: string
+          phase_id?: string | null
+          status?: Database["public"]["Enums"]["weight_set_status"]
+          strategy_id: string
+          updated_at?: string
+          version?: number
+        }
+        Update: {
+          approved_at?: string | null
+          approved_by?: string | null
+          change_reason?: string | null
+          created_at?: string
+          created_by?: string | null
+          effective_from?: string | null
+          id?: string
+          phase_id?: string | null
+          status?: Database["public"]["Enums"]["weight_set_status"]
+          strategy_id?: string
+          updated_at?: string
+          version?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "weight_sets_phase_id_fkey"
+            columns: ["phase_id"]
+            isOneToOne: false
+            referencedRelation: "strategy_phases"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "weight_sets_strategy_id_fkey"
+            columns: ["strategy_id"]
+            isOneToOne: false
+            referencedRelation: "strategies"
             referencedColumns: ["id"]
           },
         ]
@@ -628,9 +1276,19 @@ export type Database = {
         | "REVIEWER"
         | "EVALUATOR"
         | "VIEWER"
+      diagnosis_type: "swot" | "pestel"
       org_level: "national" | "regional" | "local"
+      pestel_dimension:
+        | "political"
+        | "economic"
+        | "social"
+        | "technological"
+        | "environmental"
+        | "legal"
       record_status: "draft" | "active" | "archived"
+      swot_type: "strength" | "weakness" | "opportunity" | "threat"
       validation_status: "draft" | "submitted" | "validated" | "rejected"
+      weight_set_status: "draft" | "approved" | "active" | "archived"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -769,9 +1427,20 @@ export const Constants = {
         "EVALUATOR",
         "VIEWER",
       ],
+      diagnosis_type: ["swot", "pestel"],
       org_level: ["national", "regional", "local"],
+      pestel_dimension: [
+        "political",
+        "economic",
+        "social",
+        "technological",
+        "environmental",
+        "legal",
+      ],
       record_status: ["draft", "active", "archived"],
+      swot_type: ["strength", "weakness", "opportunity", "threat"],
       validation_status: ["draft", "submitted", "validated", "rejected"],
+      weight_set_status: ["draft", "approved", "active", "archived"],
     },
   },
 } as const
