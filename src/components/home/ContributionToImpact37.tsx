@@ -10,10 +10,10 @@ export function ContributionToImpact37() {
         src={heroImage.url}
         alt=""
         aria-hidden
-        className="pointer-events-none absolute inset-y-0 start-0 h-full w-1/3 object-cover opacity-20"
+        className="pointer-events-none absolute inset-y-0 right-0 h-full w-1/3 object-cover"
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-l from-transparent to-surface"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-surface via-surface/95 to-surface/40"
         aria-hidden
       />
       <div className="relative">

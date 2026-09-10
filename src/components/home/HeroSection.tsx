@@ -40,7 +40,7 @@ export function HeroSection() {
                 <h2 className="font-display text-sm font-bold text-violet">{mission.title}</h2>
                 <Send className="size-4 text-violet" aria-hidden />
               </header>
-              <p className="max-h-40 overflow-y-auto text-[0.78rem] leading-6 text-navy/85">
+              <p className="max-h-44 overflow-y-auto text-[0.78rem] leading-6 text-navy/85">
                 {mission.text}
               </p>
             </article>
