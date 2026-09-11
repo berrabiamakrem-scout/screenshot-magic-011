@@ -2517,6 +2517,11 @@ export type Database = {
     }
     Functions: {
       can_access_unit: { Args: { _unit_id: string }; Returns: boolean }
+      can_admin_profile: {
+        Args: { _profile_org_unit: string }
+        Returns: boolean
+      }
+      can_assign_unit: { Args: { _unit_id: string }; Returns: boolean }
       can_manage_unit: { Args: { _unit_id: string }; Returns: boolean }
       has_role: {
         Args: {
@@ -2525,6 +2530,7 @@ export type Database = {
         }
         Returns: boolean
       }
+      is_national_scope: { Args: never; Returns: boolean }
       is_strategy_admin: { Args: never; Returns: boolean }
       is_super_admin: { Args: never; Returns: boolean }
       progress_percent: {
